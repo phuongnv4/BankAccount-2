@@ -2,10 +2,7 @@ package com.qsoft;
 
 public class BankAccountDTO {
 	private String accountNumber;
-
-	public int getBalance() {
-		return 0;
-	}
+	private double balance=0;
 
 	public String getAccountNumber() {
 		return accountNumber;
@@ -13,6 +10,14 @@ public class BankAccountDTO {
 
 	public void setAccountNumber(String accountNumber) {
 		this.accountNumber = accountNumber;
+	}
+
+	public double getBalance() {
+		return balance;
+	}
+
+	public void setBalance(double balance) {
+		this.balance = balance;
 	}
 
 }
