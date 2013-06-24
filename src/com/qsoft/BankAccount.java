@@ -22,7 +22,12 @@ public class BankAccount {
 	}
 
 	public void deposit(BankAccountDTO bAccountDto, int i, String string, long l) {
-		bankAccountDAO.save(bAccountDto,l);
+		bankAccountDAO.save(bAccountDto, l);
+	}
+
+	public void withdraw(BankAccountDTO bAccountDto, int amount, String desc) {
+		bAccountDto.setBalance(amount + bAccountDto.getBalance());
+		bankAccountDAO.save(bAccountDto);
 	}
 
 }

@@ -78,4 +78,23 @@ public class TestBankAccount {
 		assertEquals(1L, argumentTimeStamp.getValue().longValue());
 	}
 
+	@Test
+	public void testWithDraw() {
+		ArgumentCaptor<BankAccountDTO> argumentDTO = ArgumentCaptor
+				.forClass(BankAccountDTO.class);
+		BankAccountDTO bAccountDto = bAccount.openAccount("123456789");
+
+		// deposit
+		bAccount.deposit(bAccountDto, 60, "phuongnv save money");
+		verify(bankAccountDAO, times(2)).save(argumentDTO.capture());
+		List<BankAccountDTO> savedAccountRecords = argumentDTO.getAllValues();
+		assertEquals(savedAccountRecords.get(1).getBalance(), 60, 0.001);
+
+		// withdraw
+		bAccount.withdraw(bAccountDto, -50, "Phuongnv rut tien");
+		verify(bankAccountDAO, times(3)).save(argumentDTO.capture());
+		List<BankAccountDTO> withDraw = argumentDTO.getAllValues();
+		assertEquals(withDraw.get(2).getBalance(), 10, 0.001);
+	}
+
 }
