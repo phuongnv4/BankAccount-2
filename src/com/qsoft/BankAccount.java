@@ -30,4 +30,8 @@ public class BankAccount {
 		bankAccountDAO.save(bAccountDto);
 	}
 
+	public void getTransactionsOccurred(String accountNumber) {
+		bankAccountDAO.getListTransactions(accountNumber);
+	}
+
 }

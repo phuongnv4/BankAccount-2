@@ -26,6 +26,7 @@ public class TestBankAccount {
 		bAccount.setDao(bankAccountDAO);
 	}
 
+	// 1
 	@Test
 	public void testOpenAccount() {
 
@@ -33,6 +34,7 @@ public class TestBankAccount {
 		assertEquals(0, bAccountDto.getBalance(), 0.001);
 	}
 
+	// 2
 	@Test
 	public void testGetAccount() {
 
@@ -47,6 +49,7 @@ public class TestBankAccount {
 
 	}
 
+	// 3
 	@Test
 	public void testDeposit() {
 		ArgumentCaptor<BankAccountDTO> argumentDTO = ArgumentCaptor
@@ -63,6 +66,7 @@ public class TestBankAccount {
 
 	}
 
+	// 4
 	@Test
 	public void testDepositWithTimeStamp() {
 		ArgumentCaptor<BankAccountDTO> argumentDTO = ArgumentCaptor
@@ -78,6 +82,7 @@ public class TestBankAccount {
 		assertEquals(1L, argumentTimeStamp.getValue().longValue());
 	}
 
+	// 5
 	@Test
 	public void testWithDraw() {
 		ArgumentCaptor<BankAccountDTO> argumentDTO = ArgumentCaptor
@@ -97,4 +102,13 @@ public class TestBankAccount {
 		assertEquals(withDraw.get(2).getBalance(), 10, 0.001);
 	}
 
+	// 7
+	@Test
+	public void testGetTransactionsOccurred() {
+		BankAccountDTO bAccountDto = bAccount.openAccount("123456789");
+		//
+		bAccount.getTransactionsOccurred(bAccountDto.getAccountNumber());
+		verify(bankAccountDAO).getListTransactions(
+				bAccountDto.getAccountNumber());
+	}
 }
