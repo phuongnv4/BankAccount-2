@@ -16,4 +16,9 @@ public class BankAccountDAO {
 		return null;
 	}
 
+	public List<BankAccountDTO> getListTransactions(String accountNumber,
+			Long startTime, Long stopTime) {
+		return null;
+
+	}
 }

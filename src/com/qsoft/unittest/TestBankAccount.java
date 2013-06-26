@@ -111,4 +111,24 @@ public class TestBankAccount {
 		verify(bankAccountDAO).getListTransactions(
 				bAccountDto.getAccountNumber());
 	}
+
+	// 8
+	@Test
+	public void testGetTransactionsOccurred2() {
+		BankAccountDTO bAccountDto = bAccount.openAccount("123456789");
+
+		bAccount.getTransactionsOccurred(bAccountDto.getAccountNumber(), 1L, 5L);
+		ArgumentCaptor<String> accountNumber = ArgumentCaptor
+				.forClass(String.class);
+		ArgumentCaptor<Long> argumentStartTime = ArgumentCaptor
+				.forClass(Long.class);
+		ArgumentCaptor<Long> argumentStopTime = ArgumentCaptor
+				.forClass(Long.class);
+
+		verify(bankAccountDAO).getListTransactions(accountNumber.capture(),
+				argumentStartTime.capture(), argumentStopTime.capture());
+
+		assertEquals(1L, argumentStartTime.getValue().longValue());
+		assertEquals(5L, argumentStopTime.getValue().longValue());
+	}
 }
