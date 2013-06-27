@@ -21,4 +21,10 @@ public class BankAccountDAO {
 		return null;
 
 	}
+
+	public List<BankAccountDTO> getNTransactions(BankAccountDTO bankAccountDTO,
+			int n) {
+		return null;
+
+	}
 }

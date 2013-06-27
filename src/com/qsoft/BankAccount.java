@@ -36,7 +36,11 @@ public class BankAccount {
 
 	public void getTransactionsOccurred(String accountNumber, Long startTime,
 			Long stopTime) {
-		bankAccountDAO.getListTransactions(accountNumber,startTime,stopTime);
+		bankAccountDAO.getListTransactions(accountNumber, startTime, stopTime);
+	}
+
+	public void getNTransactions(BankAccountDTO bAccountDto, int n) {
+		bankAccountDAO.getNTransactions(bAccountDto, n);
 	}
 
 }

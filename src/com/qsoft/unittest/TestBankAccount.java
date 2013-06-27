@@ -131,4 +131,18 @@ public class TestBankAccount {
 		assertEquals(1L, argumentStartTime.getValue().longValue());
 		assertEquals(5L, argumentStopTime.getValue().longValue());
 	}
+
+	// 9
+	@Test
+	public void testGetNTransaction() {
+		ArgumentCaptor<BankAccountDTO> argumentDTO = ArgumentCaptor
+				.forClass(BankAccountDTO.class);
+		ArgumentCaptor<Integer> n = ArgumentCaptor.forClass(Integer.class);
+		BankAccountDTO bAccountDto = bAccount.openAccount("123456789");
+		bAccount.getNTransactions(bAccountDto, 20);
+
+		verify(bankAccountDAO).getNTransactions(argumentDTO.capture(),
+				n.capture());
+		assertEquals(20, n.getValue().intValue());
+	}
 }
