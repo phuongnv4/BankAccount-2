@@ -3,7 +3,6 @@ package com.qsoft;
 import java.util.List;
 
 public class BankAccountDAO {
-
 	public void save(BankAccountDTO bAccountDto) {
 
 	}
@@ -27,4 +26,5 @@ public class BankAccountDAO {
 		return null;
 
 	}
+
 }

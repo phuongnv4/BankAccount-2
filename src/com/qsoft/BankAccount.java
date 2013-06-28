@@ -3,10 +3,10 @@ package com.qsoft;
 public class BankAccount {
 	private BankAccountDAO bankAccountDAO;
 
-	public BankAccountDTO openAccount(String accountNumber) {
+	public BankAccountDTO openAccount(String accountNumber,Long l) {
 		BankAccountDTO bAccountDto = new BankAccountDTO();
 		bAccountDto.setAccountNumber(accountNumber);
-		bankAccountDAO.save(bAccountDto);
+		bankAccountDAO.save(bAccountDto,l);
 		return bAccountDto;
 	}
 
