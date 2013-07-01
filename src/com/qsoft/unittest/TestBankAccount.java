@@ -33,6 +33,7 @@ public class TestBankAccount {
 	public void testOpenAccount() {
 
 		assertEquals(0, bAccountDto.getBalance(), 0.001);
+		assertEquals("123456789", bAccountDto.getAccountNumber());
 	}
 
 	// 2
@@ -57,13 +58,14 @@ public class TestBankAccount {
 		ArgumentCaptor<BankAccountDTO> argumentDTO = ArgumentCaptor
 				.forClass(BankAccountDTO.class);
 
-		bAccountDto.setBalance(1);
 		bAccount.deposit(bAccountDto, 10, "phuongnv save money");
 		verify(bankAccountDAO).save(argumentDTO.capture());
 
 		List<BankAccountDTO> savedAccountRecords = argumentDTO.getAllValues();
 
-		assertEquals(savedAccountRecords.get(0).getBalance(), 11, 0.001);
+		assertEquals(savedAccountRecords.get(0).getBalance(), 10, 0.001);
+
+		assertEquals(savedAccountRecords.get(0).getAccountNumber(), bAccountDto.getAccountNumber());
 
 	}
 
@@ -141,5 +143,5 @@ public class TestBankAccount {
 				n.capture());
 		assertEquals(20, n.getValue().intValue());
 	}
-	//10 em refactor code theo test 10.nhung ko biet da dung chua a
+	// 10 em refactor code theo test 10.nhung ko biet da dung chua a
 }
